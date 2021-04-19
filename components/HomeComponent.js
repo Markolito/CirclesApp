@@ -14,7 +14,7 @@ function RenderFeed({posts}) {
                 <Text>{item.date}</Text>
             </Card>
         );
-    }
+    };
     return (
         <View>
             <FlatList
