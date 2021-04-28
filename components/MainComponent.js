@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,6 +8,9 @@ import Home from './HomeComponent';
 import Profile from './ProfileComponent';
 import Search from './SearchComponent';
 import Post from './PostComponent';
+
+import SafeAreaView from 'react-native-safe-area-view';
+import { connect } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
@@ -70,4 +73,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);

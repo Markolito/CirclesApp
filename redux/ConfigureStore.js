@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import logger from 'redux-logger';
-import { USERS } from './users';
-import { POSTS } from './posts';
+import { posts } from './posts';
 
 const config = {
     key: 'root',

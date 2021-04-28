@@ -9,7 +9,7 @@ function RenderFeed({posts}) {
         return (
             <Card>
                 <Card.Title>{item.userName}</Card.Title>
-                <Card.Image source={require('./images/catpic.jpg')}/> 
+                <Card.Image source={require("./images/catpic.jpg")}/> 
                 <Text>{item.text}</Text>
                 <Text>{item.date}</Text>
             </Card>
