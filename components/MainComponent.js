@@ -11,10 +11,21 @@ import Post from './PostComponent';
 
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
+import { fetchPosts, fetchUsers } from '../redux/ActionCreators';
+
+const mapDispatchToProps = {
+    fetchUsers,
+    fetchPosts
+};
 
 const Tab = createBottomTabNavigator();
 
 class Main extends Component {
+    componentDidMount() {
+        this.props.fetchUsers();
+        this.props.fetchPosts();
+    }
+
     render() {
         return (
             <NavigationContainer>

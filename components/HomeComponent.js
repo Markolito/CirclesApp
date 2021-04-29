@@ -1,49 +1,41 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
-import { POSTS } from '../shared/posts';
+import { baseUrl } from '../shared/baseUrl';
+import { connect } from 'react-redux';
 
-function RenderFeed({posts}) {
-
-    const renderPost = ({item}) => {
-        return (
-            <Card>
-                <Card.Title>{item.userName}</Card.Title>
-                <Card.Image source={require("./images/catpic.jpg")}/> 
-                <Text>{item.text}</Text>
-                <Text>{item.date}</Text>
-            </Card>
-        );
+const mapStateToProps = state => {
+    return {
+        posts: state.posts
     };
-    return (
-        <View>
-            <FlatList
-                data={posts}
-                renderItem={renderPost}
-                keyExtractor={item => item.id.toString()}/>
-        </View>
-    );
-}
+};
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            posts: POSTS
-        };
-    }
 
     static navigationOptions = {
         title: 'Home'
     }
 
     render(){
+        const renderPost = ({item}) => {
+            return (
+                <Card>
+                    <Card.Title>{item.userName}</Card.Title>
+                    <Card.Image source={{uri: baseUrl + item.image}}/> 
+                    <Text>{item.text}</Text>
+                    <Text>{item.date}</Text>
+                </Card>
+                );
+            };
         return(
             <View>
-                <RenderFeed posts={this.state.posts}/>
+                <FlatList
+                data={this.props.posts.posts}
+                renderItem={renderPost}
+                keyExtractor={item => item.id.toString()}/>
             </View>
         );
     }
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);
