@@ -1,43 +1,21 @@
-import React, { Component, useState } from 'react';
-import { Text, View, FlatList, StyleSheet, Pressable } from 'react-native';
-import { ListItem, Avatar, Overlay } from 'react-native-elements';
-import { Card } from 'react-native-elements/dist/card/Card';
-import { ScrollView } from 'react-native-gesture-handler';
-import { USERS } from '../shared/users';
+import React, { Component } from 'react';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { baseUrl } from '../shared/baseUrl';
+
 // this should be the search Component with all the different users on it
-function RenderUserList({users}) {
-  const [visible, setVisible] = useState(false);
 
-  const toggleOverlay = () => {
-    setVisible(!visible);
+  const mapStateToProps = state => {
+    return {
+        users: state.users
+    };
   };
-
-    const renderUsers = ({ item }) => (
-      <View>
-          <ListItem bottomDivider >
-            <Avatar source={require('./images/catpic.jpg')}/>
-            <ListItem.Content>
-              <ListItem.Title>{`${item.nameFirst} ${item.nameLast} `}</ListItem.Title>
-              <ListItem.Subtitle>{item.age}</ListItem.Subtitle>
-            </ListItem.Content>
-            <ListItem.Chevron />
-          </ListItem>
-      </View>
-      );
-      return (
-          <FlatList
-            keyExtractor={item => item.id.toString()}
-            data={users}
-            renderItem={renderUsers}
-          /> 
-        );
-}
 
 class Profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            users: USERS,
             showOverlay: false
         };
     }
@@ -50,11 +28,27 @@ class Profile extends Component {
     }
 
     render(){
+      const renderUsers = ({ item }) => (
+        <View>
+            <ListItem bottomDivider >
+              <Avatar source={{uri: baseUrl + item.profilePic}}/>
+              <ListItem.Content>
+                <ListItem.Title>{`${item.nameFirst} ${item.nameLast} `}</ListItem.Title>
+                <ListItem.Subtitle>{item.age}</ListItem.Subtitle>
+              </ListItem.Content>
+              <ListItem.Chevron />
+            </ListItem>
+        </View>
+        );
 
         return(
             <View>
                 <Text style={styles.titleText}>Users</Text>
-                <RenderUserList users={this.state.users}/>
+                <FlatList
+                  keyExtractor={item => item.id.toString()}
+                  data={this.props.users.users}
+                  renderItem={renderUsers}
+                /> 
             </View>
         );
     }
@@ -68,4 +62,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Profile;
+export default connect(mapStateToProps)(Profile);
