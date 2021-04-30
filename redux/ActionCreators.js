@@ -56,13 +56,13 @@ export const addUsers = users => ({
     payload: users
 });
 
-export const postFeed = ( user, text, image) => dispatch => {
+export const postFeed = (userName, text, image) => dispatch => {
     const newPost = {
-        user,
+        userName,
         text,
         image
     };
-    newPost.date = new Date().toISOString();
+    newPost.date = new Date().toLocaleDateString('en-US');
     setTimeout(() => {
         dispatch(addPost(newPost));
     }, 2000);
