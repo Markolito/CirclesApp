@@ -1,5 +1,5 @@
 export const ADD_POSTS = 'ADD_POSTS';
-export const POST_FAILED = 'POSTS_FAILED';
+export const POST_FAILED = 'POST_FAILED';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 

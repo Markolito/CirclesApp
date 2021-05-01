@@ -40,8 +40,19 @@ class Main extends Component {
                         <MaterialCommunityIcons name="home" color={color} size={26} />
                     )
                     }}/>                   
-                    <Tab.Screen name='Search' component={Search} />
-                    <Tab.Screen name='Post' component={Post} />
+                    <Tab.Screen name='Search' component={Search}
+                    options={{
+                    tabBarLabel: 'Search',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="magnify" color={color} size={26} />)
+                    }} />
+                    <Tab.Screen name='Post' component={Post}
+                    options={{
+                    tabBarLabel: 'Post',
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="plus-circle" color={color} size={26} />)
+                    }}
+                     />
                     <Tab.Screen name="Profile"
                     component={Profile}
                     options={{

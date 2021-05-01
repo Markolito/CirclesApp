@@ -21,16 +21,16 @@ class Home extends Component {
             return (
                 <Card>
                     <Card.Title>{item.userName}</Card.Title>
+                    <Text>{item.date}</Text>
                     <Card.Image source={{uri: baseUrl + item.image}}/> 
                     <Text>{item.text}</Text>
-                    <Text>{item.date}</Text>
                 </Card>
                 );
             };
         return(
             <View>
                 <FlatList
-                data={this.props.posts.posts}
+                data={ this.props.posts.posts }
                 renderItem={renderPost}
                 keyExtractor={item => item.id.toString()}/>
             </View>

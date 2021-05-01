@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { postFeed } from '../redux/ActionCreators';
@@ -49,6 +49,21 @@ class Post extends Component {
         }
     }
 
+    getImageFromLibrary = async () => {
+        const mediaPermission = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+
+        if (mediaPermission.status === 'granted'){
+            const pickpic = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true,
+                aspect: [1, 1]
+            });
+            if (!pickpic.cancelled) {
+                console.log(pickpic);
+                this.setState({image: pickpic.uri});
+            }
+        }
+    }
+
     handlePost(){
         this.props.postFeed(this.state.username, this.state.text, this.state.image);
         this.resetForm();
@@ -64,10 +79,8 @@ class Post extends Component {
 
     render() {
         return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>
-                    This will be where you will be Posting your memories
-                </Text>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+            enabled={false}>
                 <Input
                     placeholder='Username'
                     leftIcon={{type: 'font-awesome', name: 'user-o'}}
@@ -89,6 +102,10 @@ class Post extends Component {
                 <Button
                     title='Camera'
                     onPress={this.getImageFromCamera}
+                />
+                <Button
+                    title='Library'
+                    onPress={this.getImageFromLibrary}
                 />
                 <Button
                     title='Post'

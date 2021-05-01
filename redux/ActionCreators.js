@@ -18,7 +18,7 @@ export const fetchPosts = () => dispatch => {
             })
         .then(response => response.json())
         .then(posts => dispatch(addPosts(posts)))
-        .catch(error => dispatch(postsFailed(error.message)));
+        .catch(error => dispatch(postFailed(error.message)));
 };
 
 export const fetchUsers = () => dispatch => {
@@ -73,8 +73,8 @@ export const addPost = post => ({
     payload: post
 });
 
-export const postsFailed = errMess => ({
-    type: ActionTypes.POSTS_FAILED,
+export const postFailed = errMess => ({
+    type: ActionTypes.POST_FAILED,
     payload: errMess
 });
 
