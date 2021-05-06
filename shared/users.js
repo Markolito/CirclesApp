@@ -3,7 +3,7 @@ export const USERS = [
         id:0,
         nameFirst: "Mark",
         nameLast: "Alindogan",
-        profilePic: "",
+        profilePic: "./images/carpic.jpg",
         age: 27,
         birthdate: "07Jan1994",
         phoneNumber: "(555)-555-5555"
@@ -12,7 +12,7 @@ export const USERS = [
         id:1,
         nameFirst: "Cliff",
         nameLast: "Taylor",
-        profilePic: "",
+        profilePic: "./images/catpic.jpg",
         age: 22,
         birthdate: "22May1999",
         phoneNumber: "(123)-456-7890"
@@ -21,7 +21,7 @@ export const USERS = [
         id:2,
         nameFirst: "Margaret",
         nameLast: "Apples",
-        profilePic: "",
+        profilePic: "./images/carpic.jpg",
         age: 43,
         birthdate: "31Oct1988",
         phoneNumber: "(123)-456-7890"
@@ -30,7 +30,7 @@ export const USERS = [
         id:3,
         nameFirst: "Semor",
         nameLast: "Butts",
-        profilePic: "",
+        profilePic: "./images/catpic.jpg",
         age: 69,
         birthdate: "20Apr1969",
         phoneNumber: "(123)-456-7890"

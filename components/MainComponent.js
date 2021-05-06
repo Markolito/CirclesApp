@@ -8,6 +8,7 @@ import Home from './HomeComponent';
 import Profile from './ProfileComponent';
 import Search from './SearchComponent';
 import Post from './PostComponent';
+import SelectedProfile from './SelectedProfileComponent';
 
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
@@ -28,40 +29,40 @@ class Main extends Component {
 
     render() {
         return (
-            <NavigationContainer>
-                <Tab.Navigator
-                activeColor="#B4F8C8"
-                barStyle={{ backgroundColor: '#FFAEBC' }}>
-                    <Tab.Screen name="Home"
-                    component={Home}
-                    options={{
-                    tabBarLabel: 'Home',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="home" color={color} size={26} />
-                    )
-                    }}/>                   
-                    <Tab.Screen name='Search' component={Search}
-                    options={{
-                    tabBarLabel: 'Search',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="magnify" color={color} size={26} />)
-                    }} />
-                    <Tab.Screen name='Post' component={Post}
-                    options={{
-                    tabBarLabel: 'Post',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="plus-circle" color={color} size={26} />)
-                    }}
-                     />
-                    <Tab.Screen name="Profile"
-                    component={Profile}
-                    options={{
-                    tabBarLabel: 'Profile',
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account" color={color} size={26} />)
-                    }} />
-                </Tab.Navigator>
-            </NavigationContainer>
+                <NavigationContainer>
+                    <Tab.Navigator
+                    activeColor="#B4F8C8"
+                    barStyle={{ backgroundColor: '#FFAEBC' }}>
+                        <Tab.Screen name="Home"
+                        component={Home}
+                        options={{
+                        tabBarLabel: 'Home',
+                        tabBarIcon: ({ color }) => (
+                            <MaterialCommunityIcons name="home" color={color} size={26} />
+                        )
+                        }}/>                   
+                        <Tab.Screen name='Search' component={Search}
+                        options={{
+                        tabBarLabel: 'Search',
+                        tabBarIcon: ({ color }) => (
+                            <MaterialCommunityIcons name="magnify" color={color} size={26} />)
+                        }} />
+                        <Tab.Screen name='Post' component={Post}
+                        options={{
+                        tabBarLabel: 'Post',
+                        tabBarIcon: ({ color }) => (
+                            <MaterialCommunityIcons name="plus-circle" color={color} size={26} />)
+                        }}
+                        />
+                        <Tab.Screen name="Profile"
+                        component={Profile}
+                        options={{
+                        tabBarLabel: 'Profile',
+                        tabBarIcon: ({ color }) => (
+                            <MaterialCommunityIcons name="account" color={color} size={26} />)
+                        }} />
+                    </Tab.Navigator>
+                </NavigationContainer>
         );
     }
 }

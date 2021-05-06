@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
+import { NavigationEvents } from 'react-navigation';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -31,12 +32,12 @@ class Profile extends Component {
       const renderUsers = ({ item }) => (
         <View>
             <ListItem bottomDivider >
-              <Avatar source={{uri: baseUrl + item.profilePic}}/>
+              <Avatar rounded source={{uri: baseUrl + item.profilePic}}/>
               <ListItem.Content>
                 <ListItem.Title>{`${item.nameFirst} ${item.nameLast} `}</ListItem.Title>
                 <ListItem.Subtitle>{item.age}</ListItem.Subtitle>
               </ListItem.Content>
-              <ListItem.Chevron />
+              <ListItem.Chevron onPress={() => NavigationEvents('SelectedProfile', { userId: item.id})}/>
             </ListItem>
         </View>
         );
