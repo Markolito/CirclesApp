@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Header } from 'react-native-elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +14,8 @@ import SelectedProfile from './SelectedProfileComponent';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { fetchPosts, fetchUsers } from '../redux/ActionCreators';
+import { Platform } from 'react-native';
+import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 
 const mapDispatchToProps = {
     fetchUsers,
@@ -29,6 +32,16 @@ class Main extends Component {
 
     render() {
         return (
+            <View style={{
+                flex:1,
+                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
+            }}>
+                <Header
+                    placement="left"
+                    leftComponent={{ icon: 'circle', color: '#fff' }}
+                    centerComponent={{ text: 'Circles', style: { color: '#fff' } }}
+                    rightComponent={{ icon: 'home', color: '#fff' }}
+                    />
                 <NavigationContainer>
                     <Tab.Navigator
                     activeColor="#B4F8C8"
@@ -41,12 +54,6 @@ class Main extends Component {
                             <MaterialCommunityIcons name="home" color={color} size={26} />
                         )
                         }}/>                   
-                        <Tab.Screen name='Search' component={Search}
-                        options={{
-                        tabBarLabel: 'Search',
-                        tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons name="magnify" color={color} size={26} />)
-                        }} />
                         <Tab.Screen name='Post' component={Post}
                         options={{
                         tabBarLabel: 'Post',
@@ -63,6 +70,7 @@ class Main extends Component {
                         }} />
                     </Tab.Navigator>
                 </NavigationContainer>
+            </View>
         );
     }
 }

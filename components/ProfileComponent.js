@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
-import { ListItem, Avatar } from 'react-native-elements';
+import { ListItem, Avatar, Card } from 'react-native-elements';
 import { NavigationEvents } from 'react-navigation';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -12,6 +12,25 @@ import { baseUrl } from '../shared/baseUrl';
         users: state.users
     };
   };
+
+  function RenderProfile(props) {
+    const user = props;
+    console.log(user);
+    if (user) {
+        return(
+          <View>
+            <Card
+                featuredTitle={`${user.nameFirst} + ${user.nameLast}`}
+                image={{uri: baseUrl + user.profilePic}}>
+                <Text>{user.age}</Text>
+                <Text>{user.birthdate}</Text>
+                <Text>{user.phoneNumber}</Text>
+                <Text></Text>
+            </Card>
+          </View>
+        );
+    } return <View/>;
+}
 
 class Profile extends Component {
     constructor(props){
@@ -31,13 +50,13 @@ class Profile extends Component {
     render(){
       const renderUsers = ({ item }) => (
         <View>
-            <ListItem bottomDivider >
+            <ListItem bottomDivider onPress={() => RenderProfile({ item })}>
               <Avatar rounded source={{uri: baseUrl + item.profilePic}}/>
               <ListItem.Content>
                 <ListItem.Title>{`${item.nameFirst} ${item.nameLast} `}</ListItem.Title>
                 <ListItem.Subtitle>{item.age}</ListItem.Subtitle>
               </ListItem.Content>
-              <ListItem.Chevron onPress={() => NavigationEvents('SelectedProfile', { userId: item.id})}/>
+              <ListItem.Chevron />
             </ListItem>
         </View>
         );

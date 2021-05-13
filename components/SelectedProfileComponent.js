@@ -49,4 +49,4 @@ class SelectedProfile extends Component{
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectedProfile);
+export default connect(mapStateToProps)(SelectedProfile);
